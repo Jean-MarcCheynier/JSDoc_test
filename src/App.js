@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import React, {useState} from 'react'
+import DocumentedComponent from './DocumentedComponent';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'
 
 function App() {
+  
+  const [form, setForm] = useState()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h4 className='my-4'>Playing with JSDocs and better-docs template</h4>
+      <Card className="my-4 ">
+        <Card.Body>
+          <Card.Title>Example of a Form Component With a JSDoc</Card.Title>
+          <DocumentedComponent title="Test Documented Component" onSubmit={setForm} />
+        </Card.Body>
+      </Card>
+      {form && <Card className="my-4 ">
+        <Card.Body>
+          <Card.Title>Form to be sent</Card.Title>
+          <pre className={'p-2 bg-dark text-white'}>
+            <code>
+              {JSON.stringify(form, undefined, 2)}
+            </code>
+          </pre>
+        </Card.Body>
+      </Card>}
+      <Button href={'/docs/index.html'}>Go to JSDocs</Button>
+      
     </div>
   );
 }
